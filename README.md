@@ -3,7 +3,7 @@ A code written in Python that helps you to keep your account 24/7 online.
 
 ## Requirements 🧰
 - [Python 3+](https://www.python.org/)
-- [Discord](https://discord.com/) account. 
+- [Discord Account](https://discord.com/)
 
 ## Installation 🐍
 
