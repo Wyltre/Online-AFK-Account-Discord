@@ -1,4 +1,4 @@
-# Discord Online Forever 🦄😏
+# Online AFK Account Discord 🦄😏
 A code written in Python that helps you to keep your account 24/7 online.
 
 ## Requirements 🧰
@@ -24,7 +24,7 @@ $ pip install -r requirements.txt
 Get your discord token and add it to the `token` in `config.py` file.  (_paste inside the quotations._) If you don't know how to get your discord token, just google. 😏
 
 ```py
-token = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+token = "youraccounttokenhere"   # Token Here / Tokeni Buraya Girin.
 ```
 ---
 ### 📍 DO NOT GIVE YOUR TOKEN TO OTHERS !!!
@@ -38,11 +38,19 @@ token = "xxxxxxxxxxxxxxxxxxxxxxxxx"
 > This repository is in no way affiliated with, authorized, maintained, sponsored or endorsed by [Discord Inc.](https://discord.com/) or any of its affiliates or subsidiaries.
 
 
+### How Get A Account Token ?
 
+discord.com/app
+F12 (ctrl + shift + ı) > Console > paste code 
+
+```
+(webpackChunkdiscord_app.push([[''],{},e=>{m=[];for(let c in e.c)m.push(e.c[c])}]),m).find(m=>m?.exports?.default?.getToken!==void 0).exports.default.getToken()
+
+```
 
 ---
 ## Usage 🍕
-### Then run the code: WoWoWo!!! 🍻
+### Then run the code:  🍻
 ```
  $ python online.py
 ```
