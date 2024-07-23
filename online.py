@@ -3,6 +3,12 @@ import json
 import time
 import websocket
 import requests
+import logging
+import sys
+
+# Websocket kütüphanesinin log seviyesini hata seviyesine ayarlayarak diğer logları kapatıyoruz.
+websocket.enableTrace(False)
+logging.getLogger('websocket').setLevel(logging.ERROR)
 
 status = "online"
 token = config.token
@@ -11,12 +17,16 @@ userinfo = requests.get('https://discordapp.com/api/v9/users/@me', headers=heade
 username = userinfo["username"]
 discriminator = userinfo["discriminator"]
 userid = userinfo["id"]
-#github.com/wyltre
-print("Başlatılıyor... ")
+
+# Sadece belirli mesajların yazdırılması
+def custom_print(message):
+    print(message)
+
+custom_print("Başlatılıyor... ")
 time.sleep(2)  
-print("""Başlatılıyor... 
+custom_print("""Başlatılıyor... 
 | |   / /_ __/ / /_________ 
-| | /| / / / / / / __/ ___/ _ \
+| | /| / / / / / / __/ ___/ _ \\
 | |/ |/ / /_/ / / /_/ / / __/
 |__/|__/\__, /_/\__/_/  \___/ 
     /____/   """)
@@ -25,27 +35,27 @@ time.sleep(2)
 
 def keep_online(token, status):
     ws = websocket.WebSocketApp("wss://gateway.discord.gg/?v=9&encoding=json",
-                                on_message = on_message,
-                                on_error = on_error,
-                                on_close = on_close)
+                                on_message=on_message,
+                                on_error=on_error,
+                                on_close=on_close)
     ws.on_open = on_open
     ws.run_forever()
 
 def on_message(ws, message):
-    print(message)
+    pass  # Gereksiz mesajları devre dışı bırakıyoruz
 
 def on_error(ws, error):
-    print(error)
+    pass  # Gereksiz hata mesajlarını devre dışı bırakıyoruz
 
 def on_close(ws, close_status_code, close_msg):
-    print("### Hesap Kapatıldı. ###")
-#github.com/wyltre
+    custom_print("### Hesap Kapatıldı. ###")
+
 def on_open(ws):
-    auth = {"op": 2,"d": {"token": token,"properties": {"$os": "Windows 11","$browser": "Google Chrome","$device": "Windows"},"presence": {"status": status,"afk": False}},"s": None,"t": None}
+    auth = {"op": 2, "d": {"token": token, "properties": {"$os": "Windows 11", "$browser": "Google Chrome", "$device": "Windows"}, "presence": {"status": status, "afk": False}}, "s": None, "t": None}
     ws.send(json.dumps(auth))
 
 def run_keep_online():
-    print(f"Hesaba Başarılıyla Bağlanıldı {username}#{discriminator} ({userid}).")
+    custom_print(f"Hesaba Başarılıyla Bağlanıldı {username}#{discriminator} ({userid}).")
     while True:
         keep_online(token, status)
         time.sleep(30)
