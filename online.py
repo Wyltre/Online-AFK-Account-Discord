@@ -6,7 +6,7 @@ import requests
 import logging
 import sys
 
-# Websocket kütüphanesinin log seviyesini hata seviyesine ayarlayarak diğer logları kapatıyoruz.
+
 websocket.enableTrace(False)
 logging.getLogger('websocket').setLevel(logging.ERROR)
 
@@ -18,7 +18,7 @@ username = userinfo["username"]
 discriminator = userinfo["discriminator"]
 userid = userinfo["id"]
 
-# Sadece belirli mesajların yazdırılması
+
 def custom_print(message):
     print(message)
 
@@ -42,10 +42,10 @@ def keep_online(token, status):
     ws.run_forever()
 
 def on_message(ws, message):
-    pass  # Gereksiz mesajları devre dışı bırakıyoruz
+    pass  
 
 def on_error(ws, error):
-    pass  # Gereksiz hata mesajlarını devre dışı bırakıyoruz
+    pass
 
 def on_close(ws, close_status_code, close_msg):
     custom_print("### Hesap Kapatıldı. ###")
